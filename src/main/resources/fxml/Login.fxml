@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.hbuas.netdisk.control.LoginControl">
+   <children>
+      <Label layoutX="51.0" layoutY="80.0" text="用户名">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="username" layoutX="144.0" layoutY="74.0" prefHeight="36.0" prefWidth="201.0" />
+      <Label layoutX="60.0" layoutY="151.0" text="密码">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="password" layoutX="144.0" layoutY="145.0" prefHeight="36.0" prefWidth="201.0" />
+      <Button fx:id="loginBtn" layoutX="88.0" layoutY="220.0" mnemonicParsing="false" onAction="#login" text="立即登录">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="registerBtn" layoutX="245.0" layoutY="220.0" mnemonicParsing="false" onAction="#register" text="注册账号">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

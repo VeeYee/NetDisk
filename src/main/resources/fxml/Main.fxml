@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="601.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.hbuas.netdisk.control.MainControl">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutY="-2.0" prefHeight="76.0" prefWidth="891.0" spacing="30.0" style="-fx-background-color: #eef0f6;">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo2.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="uploadBtn" mnemonicParsing="false" onAction="#uploadFile" prefHeight="30.0" prefWidth="61.0" style="-fx-background-color: #eef0f6;" text="上传">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="downloadBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #eef0f6;" text="下载">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: #eef0f6;" text="删除">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="newBtn" mnemonicParsing="false" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #eef0f6;" text="新建文件夹">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <TextField prefHeight="30.0" prefWidth="170.0" promptText="搜索我的网盘文件" style="-fx-background-color: #eef0f6;" />
+            <Button fx:id="search" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: #eef0f6;" text="搜索">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+         </children>
+      </HBox>
+      <Pane layoutY="74.0" prefHeight="547.0" prefWidth="135.0" style="-fx-background-color: #f9fafb;">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutY="28.0" prefHeight="343.0" prefWidth="135.0" spacing="20.0" style="-fx-background-color: #f9fafb;">
+               <children>
+                  <ImageView fx:id="images" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="username" text="用户名">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <GridPane fx:id="gridPane" alignment="CENTER" layoutX="135.0" layoutY="74.0" prefHeight="530.0" prefWidth="742.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="74.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox alignment="CENTER" prefHeight="112.0" prefWidth="108.0">
+               <children>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
