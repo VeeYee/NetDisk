@@ -1,7 +1,9 @@
 package edu.hbuas.netdisk.model;
 
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
   private String username;
   private String password;
@@ -22,6 +24,11 @@ public class User {
     this.tel = tel;
     this.email = email;
     this.images = images;
+  }
+
+  public User(String username, String password) {
+    this.username = username;
+    this.password = password;
   }
 
   public String getUsername() {

@@ -1,6 +1,7 @@
 package edu.hbuas.netdisk.control;
 
-import edu.hbuas.netdisk.dao.UserDAO;
+import edu.hbuas.netdisk.model.Message;
+import edu.hbuas.netdisk.model.MessageType;
 import edu.hbuas.netdisk.model.User;
 import edu.hbuas.netdisk.utils.Toast;
 import edu.hbuas.netdisk.view.Head;
@@ -14,6 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -45,17 +49,13 @@ public class RegisterControl implements Initializable {
     @FXML
     public Button loginBtn;
 
-    private UserDAO dao;
-
     private HeadControl headControl;
     private Image selectImage;
     private String url;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dao = new UserDAO();
         age.setValue(LocalDate.now()); //生日默认是当前时间
-//        this.headControl = (HeadControl) ControlCollections.controls.get(HeadControl.class);
     }
 
     //点击选择头像
@@ -108,22 +108,38 @@ public class RegisterControl implements Initializable {
             toast.show(level, 1000, "两次密码不一致！");
             confirmPassword.requestFocus();
         }else {
-            //将所有数据封装成一个user
-            User user = new User(usernameInput, passwordInput, sexInput, ageInput, telInput, emailInput,imageInput);
             try {
-                boolean result = dao.registerUser(user);
-                if (result) {
-//                    Alert a = new Alert(Alert.AlertType.INFORMATION);
-//                    a.setContentText("注册成功！");
-//                    a.show();
+                Socket client = new Socket("localhost", 8123);
+                ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
+                ObjectInputStream in = new ObjectInputStream(client.getInputStream());
+                //封装用户注册的消息
+                Message registerMessage = new Message();
+                User user = new User(usernameInput, passwordInput, sexInput, ageInput, telInput, emailInput,imageInput);
+                registerMessage.setFrom(user);
+                registerMessage.setType(MessageType.REGISTER);
+                //写给服务器注册消息
+                out.writeObject(registerMessage);
+                out.flush();
+
+                //读取服务器返回的消息
+                Message registerResult = (Message) in.readObject();
+                user = registerResult.getFrom();
+                if (user==null){
+                    Alert a = new Alert(Alert.AlertType.ERROR);
+                    a.setContentText("注册失败，该用户名已存在！");
+                    a.show();
+                }else{
+                    //跳转到主页面，并隐藏当前登录页面
                     Login login = new Login();
                     login.start(new Stage());
                     registerBtn.getScene().getWindow().hide();
                 }
-            } catch (Exception e) {
-                Alert a = new Alert(Alert.AlertType.ERROR);
-                a.setContentText("注册失败，该用户名已存在！");
-                a.show();
+                //关闭连接
+                out.close();
+                in.close();
+                client.close();
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
     }

@@ -1,6 +1,7 @@
 package edu.hbuas.netdisk.control;
 
-import edu.hbuas.netdisk.dao.UserDAO;
+import edu.hbuas.netdisk.model.Message;
+import edu.hbuas.netdisk.model.MessageType;
 import edu.hbuas.netdisk.model.User;
 import edu.hbuas.netdisk.view.Main;
 import edu.hbuas.netdisk.view.Register;
@@ -12,6 +13,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,7 +30,6 @@ public class LoginControl implements Initializable {
     @FXML
     public Button registerBtn;
 
-    private UserDAO dao;
     private User user;   //登录的用户
 
     public User getUser() {
@@ -40,7 +43,6 @@ public class LoginControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         put();
-        dao = new UserDAO();
     }
 
     //点击登录按钮时，查询用户信息
@@ -49,7 +51,20 @@ public class LoginControl implements Initializable {
         String usernameInput = username.getText().trim();
         String passwordInput = password.getText().trim();
         try {
-            user = dao.login(usernameInput,passwordInput);
+            Socket client = new Socket("localhost",8123);
+            ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(client.getInputStream());
+            //封装用户登录的消息
+            Message loginMessage = new Message();
+            user = new User(usernameInput,passwordInput);
+            loginMessage.setFrom(user);
+            loginMessage.setType(MessageType.LOGIN);
+            //写给服务器登录消息
+            out.writeObject(loginMessage);
+            out.flush();
+            //读取服务器返回的消息
+            Message loginResult = (Message) in.readObject();
+            user = loginResult.getFrom();
             if (user==null){
                 Alert a = new Alert(Alert.AlertType.ERROR);
                 a.setContentText("登陆失败，用户名或密码错误！");
@@ -60,6 +75,10 @@ public class LoginControl implements Initializable {
                 main.start(new Stage());
                 loginBtn.getScene().getWindow().hide();
             }
+            //关闭连接
+            out.close();
+            in.close();
+            client.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

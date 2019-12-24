@@ -4,6 +4,7 @@ package edu.hbuas.netdisk.model;
 
 import lombok.*;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -14,10 +15,10 @@ import java.util.Set;
 @ToString
 public class Message implements Serializable {
 
-    private String from;
+    private User from;
     private MessageType type;
     private String fileName;
     private long fileLength;
-    private Set<ClientFile> fileList;
+    private Set<File> fileList;
 
 }
