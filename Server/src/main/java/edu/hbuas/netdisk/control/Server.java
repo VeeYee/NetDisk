@@ -4,11 +4,6 @@ import edu.hbuas.netdisk.dao.UserDAO;
 import edu.hbuas.netdisk.dao.UserDAOImpl;
 import edu.hbuas.netdisk.model.Message;
 import edu.hbuas.netdisk.model.User;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import lombok.AllArgsConstructor;
 
 import java.io.*;
@@ -91,20 +86,33 @@ public class Server {
                         //上传的文件写到D盘
                         File userDir = new File("D:/NetDiskFile/" + message.getFrom().getUsername());
                         if (!userDir.exists()) userDir.mkdir();
-                        FileOutputStream out = new FileOutputStream(userDir + "/" + message.getFileName());
+                        //通过通道流读取文件信息，再通过字节流从内存写向磁盘
+                        FileOutputStream fileOut = new FileOutputStream(userDir + "/" + message.getFileName());
                         byte[] bs = new byte[1024];
                         int length = -1;
                         while ((length = in.read(bs)) != -1) {
-                            out.write(bs,0,length);
-                            out.flush();
+                            fileOut.write(bs,0,length);
+                            fileOut.flush();
                         }
-                        out.close();
-//                        in.close();
+                        fileOut.close();
+                        in.close();
                         break;
                     }
                     //下载文件的消息
                     case DOWNLOAD: {
                         System.out.println("服务器收到一条下载文件的消息");
+                        File userDir = new File("D:/NetDiskFile/" + message.getFrom().getUsername());
+                        if (!userDir.exists()) userDir.mkdir();
+                        //字节流从磁盘读取文件写向内存，再通过通道流写向客户端
+                        FileInputStream fileIn = new FileInputStream(userDir+ "/" +message.getFileName());
+                        byte[] bs = new byte[1024];
+                        int length = -1;
+                        while((length = fileIn.read(bs)) != -1) {
+                            out.write(bs,0,length);
+                            out.flush();
+                        }
+                        fileIn.close();
+                        out.close();
                         break;
                     }
                     //更新界面的消息

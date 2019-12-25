@@ -21,4 +21,10 @@ public class Message implements Serializable {
     private long fileLength;
     private Set<File> fileList;
 
+    public Message(User from, MessageType type, String fileName, long fileLength) {
+        this.from = from;
+        this.type = type;
+        this.fileName = fileName;
+        this.fileLength = fileLength;
+    }
 }
