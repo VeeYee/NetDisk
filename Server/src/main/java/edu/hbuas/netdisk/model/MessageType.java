@@ -8,5 +8,9 @@ public enum MessageType implements Serializable {
     REGISTER,
     UPLOAD,
     DOWNLOAD,
-    UPDATE
+    UPDATE,
+    DELETE,
+    RENAME,
+    TRANSFER,
+    DELETERECORD
 }

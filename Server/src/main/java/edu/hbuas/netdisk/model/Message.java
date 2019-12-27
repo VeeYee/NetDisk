@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.Set;
 
 @Getter
@@ -19,7 +20,8 @@ public class Message implements Serializable {
     private MessageType type;
     private String fileName;
     private long fileLength;
-    private Set<File> fileList;
+    private LinkedList<File> fileList;
+    private LinkedList<Transfer> recordList;
 
     public Message(User from, MessageType type, String fileName, long fileLength) {
         this.from = from;

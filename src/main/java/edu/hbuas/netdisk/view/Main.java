@@ -19,7 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Main.fxml"));
-            Scene s=new Scene(root,875,601);
+            Scene s=new Scene(root,910,601);
             primaryStage.setScene(s);
             primaryStage.getIcons().add(new Image("images/logo.png"));
             primaryStage.setResizable(false);
