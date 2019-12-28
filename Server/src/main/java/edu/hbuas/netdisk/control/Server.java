@@ -107,7 +107,7 @@ public class Server {
                     case UPLOAD: {
                         System.out.println("服务器收到一条上传文件的消息");
                         //通过通道流读取文件信息，再通过字节流从内存写向磁盘
-                        FileOutputStream fileOut = new FileOutputStream(userDir + "/" + message.getFileName());
+                        FileOutputStream fileOut = new FileOutputStream(userDir + "/" + message.getFileName().split("   ")[1]);
                         byte[] bs = new byte[1024];
                         int length = -1;
                         while ((length = in.read(bs)) != -1) {
@@ -118,7 +118,8 @@ public class Server {
                         in.close();
                         //向传输记录表插入一条数据
                         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()); //获取当前时间
-                        Transfer record = new Transfer(0,message.getFrom().getUsername(),message.getFileName(),message.getFileLength(),"",time,"上传");
+                        Transfer record = new Transfer(0,message.getFrom().getUsername(),message.getFileName().split("   ")[1],
+                                message.getFileLength(),message.getFileName().split("   ")[0],time,"上传");
                         tfdao.addRecode(record);
                         break;
                     }
