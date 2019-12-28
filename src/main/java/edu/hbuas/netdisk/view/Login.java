@@ -19,7 +19,7 @@ public class Login extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Login.fxml"));
-            Scene s=new Scene(root,414,308);
+            Scene s=new Scene(root,420,322);
             primaryStage.setScene(s);
             primaryStage.getIcons().add(new Image("images/logo.png"));
             primaryStage.setResizable(false);

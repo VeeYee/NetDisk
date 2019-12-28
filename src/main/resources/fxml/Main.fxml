@@ -14,31 +14,40 @@
                   <Image url="@../images/logo2.png" />
                </image>
             </ImageView>
-            <Button fx:id="myNetDiskBtn" mnemonicParsing="false" onAction="#myNetDisk" prefHeight="34.0" prefWidth="99.0" style="-fx-background-color: #eef0f6;" text="我的网盘">
+            <ToggleButton fx:id="myNetDiskBtn" mnemonicParsing="false" onAction="#myNetDisk" prefHeight="40.0" prefWidth="90.0" selected="true" style="-fx-background-color: #eef0f6;" text="我的网盘">
                <font>
                   <Font size="16.0" />
                </font>
-            </Button>
-            <Button fx:id="transferBtn" mnemonicParsing="false" onAction="#transferList" prefHeight="34.0" prefWidth="94.0" style="-fx-background-color: #eef0f6;" text="传输列表">
+               <toggleGroup>
+                  <ToggleGroup fx:id="menuBtn" />
+               </toggleGroup>
+            </ToggleButton>
+            <ToggleButton fx:id="transferBtn" mnemonicParsing="false" onAction="#transferList" prefHeight="34.0" prefWidth="90.0" style="-fx-background-color: #eef0f6;" text="传输列表" toggleGroup="$menuBtn">
                <font>
                   <Font size="16.0" />
                </font>
-            </Button>
-            <Button fx:id="uploadBtn" mnemonicParsing="false" onAction="#uploadFile" prefHeight="34.0" prefWidth="92.0" style="-fx-background-color: #eef0f6;" text="上传文件">
+            </ToggleButton>
+            <ToggleButton fx:id="uploadBtn" mnemonicParsing="false" onAction="#uploadFile" prefHeight="34.0" prefWidth="90.0" style="-fx-background-color: #eef0f6;" text="上传文件" toggleGroup="$menuBtn">
                <font>
                   <Font size="16.0" />
                </font>
-            </Button>
-            <Button fx:id="newBtn" mnemonicParsing="false" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #eef0f6;" text="新建文件夹">
+            </ToggleButton>
+            <ToggleButton fx:id="newBtn" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #eef0f6;" text="新建文件夹" toggleGroup="$menuBtn">
                <font>
                   <Font size="16.0" />
                </font>
-            </Button>
-            <TextField fx:id="searchText" onAction="#searchFile2" prefHeight="30.0" prefWidth="170.0" promptText="搜索我的网盘文件" style="-fx-background-color: #eef0f6;" />
-            <Button mnemonicParsing="false" onAction="#searchFile1" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: #eef0f6;" text="搜索">
+            </ToggleButton>
+            <TextField fx:id="searchText" onAction="#searchFile2" prefHeight="38.0" prefWidth="186.0" promptText="搜索我的网盘文件" style="-fx-background-color: rgba(223,224,226,0.88); -fx-background-radius: 20;" />
+            <Button mnemonicParsing="false" onAction="#searchFile1" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #eef0f6;">
                <font>
                   <Font size="16.0" />
-               </font></Button>
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/search.jpg" />
+                     </image></ImageView>
+               </graphic></Button>
          </children>
       </HBox>
       <Pane layoutY="74.0" prefHeight="562.0" prefWidth="135.0" style="-fx-background-color: #f9fafb;">
@@ -61,8 +70,7 @@
       </Pane>
       <ScrollPane fx:id="scrollPane" layoutX="135.0" layoutY="75.0" prefHeight="556.0" prefWidth="786.0" style="-fx-background-color: white;">
         <content>
-          <AnchorPane fx:id="scrollContent" minHeight="535.0" minWidth="786.0" style="-fx-background-color: white;">
-          </AnchorPane>
+          <AnchorPane fx:id="scrollContent" minHeight="535.0" minWidth="785.0" style="-fx-background-color: white;" />
         </content>
       </ScrollPane>
    </children>

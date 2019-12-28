@@ -1,6 +1,5 @@
 package edu.hbuas.netdisk.dao;
 
-
 import edu.hbuas.netdisk.model.Transfer;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -9,7 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class TransferDAOImpl implements TransferDAO {
-
     /**
      * 向传输记录表中添加一条记录
      * @param t
@@ -20,8 +18,8 @@ public class TransferDAOImpl implements TransferDAO {
         boolean flag = false;
         QueryRunner runner = new QueryRunner(ConnectionPool.getDataSource());
         try {
-            int count = runner.update("insert into transfer values(?,?,?,?,?,?)",
-                    0,t.getUsername(),t.getFilename(),t.getFileLength(),t.getTime(),t.getOperating());
+            int count = runner.update("insert into transfer values(?,?,?,?,?,?,?)",
+                    0,t.getUsername(),t.getFilename(),t.getFileLength(),t.getFilepath(),t.getTime(),t.getOperating());
             flag = count>0?true:false;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -5,78 +5,84 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="527.0" prefWidth="348.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.hbuas.netdisk.control.RegisterControl">
+<AnchorPane prefHeight="612.0" prefWidth="370.0" style="-fx-background-color: #f0f1f2;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.hbuas.netdisk.control.RegisterControl">
    <children>
-      <Label layoutX="40.0" layoutY="52.0" text="用户名">
+      <Label layoutX="31.0" layoutY="48.0" text="用户名">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="username" layoutX="120.0" layoutY="47.0" prefHeight="30.0" prefWidth="182.0" />
-      <Label layoutX="55.0" layoutY="98.0" text="密码">
+      <TextField fx:id="username" layoutX="106.0" layoutY="39.0" prefHeight="38.0" prefWidth="236.0" style="-fx-background-color: #f0f1f2; -fx-border-color: gray; -fx-border-radius: 20;" />
+      <Label layoutX="39.0" layoutY="98.0" text="密码">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <PasswordField fx:id="password" layoutX="120.0" layoutY="93.0" prefHeight="30.0" prefWidth="182.0" />
-      <Label layoutX="25.0" layoutY="147.0" text="确认密码">
+      <PasswordField fx:id="password" layoutX="106.0" layoutY="89.0" prefHeight="38.0" prefWidth="236.0" style="-fx-background-color: #f0f1f2; -fx-border-color: gray; -fx-border-radius: 20;" />
+      <Label layoutX="25.0" layoutY="151.0" text="确认密码">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <PasswordField fx:id="confirmPassword" layoutX="120.0" layoutY="142.0" prefHeight="30.0" prefWidth="182.0" />
-      <Label layoutX="55.0" layoutY="193.0" text="性别">
+      <PasswordField fx:id="confirmPassword" layoutX="106.0" layoutY="142.0" prefHeight="38.0" prefWidth="236.0" style="-fx-background-color: #f0f1f2; -fx-border-color: gray; -fx-border-radius: 20;" />
+      <Label layoutX="39.0" layoutY="201.0" text="性别">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
 
-      <RadioButton fx:id="male" layoutX="131.0" layoutY="195.0" mnemonicParsing="false" selected="true" text="男">
+      <RadioButton fx:id="male" layoutX="148.0" layoutY="203.0" mnemonicParsing="false" selected="true" style="-fx-background-color: #f0f1f2;" text="男">
          <toggleGroup>
             <ToggleGroup fx:id="sex" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="female" layoutX="197.0" layoutY="195.0" mnemonicParsing="false" text="女" toggleGroup="$sex" />
-      <Label layoutX="55.0" layoutY="241.0" text="年龄">
+      <RadioButton fx:id="female" layoutX="214.0" layoutY="203.0" mnemonicParsing="false" style="-fx-background-color: #f0f1f2;" text="女" toggleGroup="$sex" />
+      <Label layoutX="39.0" layoutY="250.0" text="年龄">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="age" layoutX="118.0" layoutY="235.0" prefHeight="30.0" prefWidth="186.0" />
-      <Label layoutX="55.0" layoutY="312.0" text="头像">
+      <DatePicker fx:id="age" layoutX="108.0" layoutY="241.0" prefHeight="38.0" prefWidth="236.0" style="-fx-background-color: #f0f1f2; -fx-border-color: gray;" />
+      <Label layoutX="39.0" layoutY="333.0" text="头像">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ImageView fx:id="myImage" fitHeight="85.0" fitWidth="85.0" layoutX="122.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="myImage" fitHeight="85.0" fitWidth="85.0" layoutX="122.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../head/default.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="selectBtn" onAction="#select" layoutX="226.0" layoutY="332.0" mnemonicParsing="false" text="选择头像">
+      <Button fx:id="selectBtn" layoutX="226.0" layoutY="332.0" mnemonicParsing="false" onAction="#select" style="-fx-background-color: #87cee7; -fx-background-radius: 20;" text="选择头像">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="55.0" layoutY="384.0" text="电话">
+      <Label layoutX="25.0" layoutY="413.0" text="联系方式">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="tel" layoutX="122.0" layoutY="379.0" prefHeight="30.0" prefWidth="182.0" />
-      <Label layoutX="55.0" layoutY="432.0" text="邮箱">
+      <TextField fx:id="tel" layoutX="106.0" layoutY="404.0" prefHeight="38.0" prefWidth="236.0" style="-fx-background-color: #f0f1f2; -fx-border-color: gray; -fx-border-radius: 20;" />
+      <Label layoutX="25.0" layoutY="466.0" text="电子邮箱">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="email" layoutX="121.0" layoutY="427.0" prefHeight="30.0" prefWidth="182.0" />
-      <Button fx:id="registerBtn" layoutX="136.0" layoutY="478.0" mnemonicParsing="false" onAction="#register" prefHeight="23.0" prefWidth="76.0" text="立即注册">
+      <TextField fx:id="email" layoutX="106.0" layoutY="457.0" prefHeight="38.0" prefWidth="236.0" style="-fx-background-color: #f0f1f2; -fx-border-color: gray; -fx-border-radius: 20;" />
+      <Button fx:id="registerBtn" layoutX="26.0" layoutY="518.0" mnemonicParsing="false" onAction="#register" prefHeight="45.0" prefWidth="320.0" style="-fx-background-color: #87cee7; -fx-background-radius: 20;" text="立即注册">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button fx:id="loginBtn" layoutX="280.0" layoutY="573.0" mnemonicParsing="false" onAction="#login" prefHeight="20.0" prefWidth="76.0" style="-fx-background-color: #f0f1f2;" text="返回登录" textFill="#8c8787">
          <font>
             <Font size="14.0" />
-         </font></Button>
-      <Button fx:id="loginBtn" layoutX="231.0" layoutY="478.0" mnemonicParsing="false" onAction="#login" text="返回登录">
+         </font>
+      </Button>
+      <Label layoutX="7.0" layoutY="3.0" text="用户注册">
          <font>
-            <Font size="14.0" />
-         </font></Button>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

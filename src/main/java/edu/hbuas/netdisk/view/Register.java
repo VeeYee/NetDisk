@@ -19,7 +19,7 @@ public class Register extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Register.fxml"));
-            Scene s=new Scene(root,348,527);
+            Scene s=new Scene(root,362,605);
             primaryStage.setScene(s);
             primaryStage.getIcons().add(new Image("images/logo.png"));
             primaryStage.setResizable(false);

@@ -4,7 +4,7 @@ import edu.hbuas.netdisk.model.Message;
 import edu.hbuas.netdisk.model.MessageType;
 import edu.hbuas.netdisk.model.Transfer;
 import edu.hbuas.netdisk.model.User;
-import edu.hbuas.netdisk.utils.DateFormatUtil;
+import edu.hbuas.netdisk.utils.DateUtil;
 import edu.hbuas.netdisk.utils.FileSizeUtil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,9 +31,7 @@ import javafx.stage.FileChooser;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainControl implements Initializable {
@@ -50,13 +48,13 @@ public class MainControl implements Initializable {
     private Label username;
 
     @FXML
-    private Button myNetDiskBtn;
+    private ToggleButton myNetDiskBtn;
     @FXML
-    private Button transferBtn;
+    private ToggleButton transferBtn;
     @FXML
-    private Button uploadBtn;
+    private ToggleButton uploadBtn;
     @FXML
-    private Button newBtn;
+    private ToggleButton newBtn;
 
     //文件搜索框
     @FXML
@@ -178,19 +176,25 @@ public class MainControl implements Initializable {
                 v.getChildren().addAll(fileName,fileLength);
 
                 //时间、操作类型以及按钮
-                HBox h = new HBox(30);
+                HBox h = new HBox(22);
                 h.setAlignment(Pos.CENTER);
                 h.setPrefSize(397,66);
-                DateFormatUtil d = new DateFormatUtil();
-                Label time = new Label(d.dateFormatUtil(t.getTime()));
-                time.setPrefWidth(100);
+                DateUtil d = new DateUtil();
+                Label time = new Label(d.getDate(t.getTime()));
+                time.setPrefWidth(90);
                 time.setStyle("-fx-text-fill: #7c7a7a");
                 Label type = new Label(t.getOperating()+"完成");
                 type.setStyle("-fx-text-fill: #7c7a7a");
-                Button openBtn = new Button("打开");
-                openBtn.setStyle("-fx-background-color: #e7e7e7");
-                Button deleteBtn = new Button("删除");
-                deleteBtn.setStyle("-fx-background-color: #e7e7e7");
+                //打开文件按钮
+                ImageView openPic = new ImageView(new Image("images/open.png"));
+                Button openBtn = new Button("",openPic);
+                openBtn.setStyle("-fx-background-color: white");
+                openBtn.setPrefSize(30,30);
+                //删除按钮
+                ImageView deletePic = new ImageView(new Image("images/delete.png"));
+                Button deleteBtn = new Button("",deletePic);
+                deleteBtn.setStyle("-fx-background-color: white");
+                deleteBtn.setPrefSize(30,30);
                 deleteBtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -244,7 +248,7 @@ public class MainControl implements Initializable {
     @FXML
     public void myNetDisk(){
         clearBtnBackground();
-        myNetDiskBtn.setStyle("-fx-background-color: rgba(95,203,255,0.74)");
+        myNetDiskBtn.setStyle("-fx-background-color: rgba(96,204,255,0.7); -fx-background-radius: 20");
         updateUI(fileList);
     }
 
@@ -252,7 +256,7 @@ public class MainControl implements Initializable {
     @FXML
     public void transferList(){
         clearBtnBackground();
-        transferBtn.setStyle("-fx-background-color: rgba(95,203,255,0.74)");
+        transferBtn.setStyle("-fx-background-color: rgba(96,204,255,0.7); -fx-background-radius: 20");
         //初始化时读取所有的传输记录
         try {
             Socket client = new Socket("localhost",8123);
@@ -278,7 +282,7 @@ public class MainControl implements Initializable {
     @FXML
     public void uploadFile(){
         clearBtnBackground();
-        uploadBtn.setStyle("-fx-background-color: rgba(95,203,255,0.74)");
+        uploadBtn.setStyle("-fx-background-color: rgba(96,204,255,0.7); -fx-background-radius: 20");
         //建立短连接，上传或下载时才连接
         Socket client = null;
         ObjectOutputStream out = null;
@@ -384,14 +388,16 @@ public class MainControl implements Initializable {
             Socket client = new Socket("localhost",8123);
             ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(client.getInputStream());
-            //向服务器发送下载消息
-            Message downloadMessage = new Message(user,MessageType.DOWNLOAD,fileName,0);
-            out.writeObject(downloadMessage);
-            out.flush();
             //用户选择文件下载路径 目录选择器
             DirectoryChooser dc = new DirectoryChooser();
             File saveDir = dc.showDialog(scrollPane.getScene().getWindow());
             if(!saveDir.exists()) saveDir.mkdir();
+            //文件的下载路径
+            String filePath = saveDir + "\\" + fileName;
+            //向服务器发送下载消息
+            Message downloadMessage = new Message(user,MessageType.DOWNLOAD,filePath+"   "+fileName,0);
+            out.writeObject(downloadMessage);
+            out.flush();
             //通过通道流读取文件信息，再通过字节流从内存写向磁盘
             FileOutputStream fileOut = new FileOutputStream(saveDir + "/" + fileName);
             byte[] bs = new byte[1024];

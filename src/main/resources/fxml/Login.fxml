@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.hbuas.netdisk.control.LoginControl">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="420.0" style="-fx-background-color: #f0f1f2;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.hbuas.netdisk.control.LoginControl">
    <children>
-      <Label layoutX="51.0" layoutY="80.0" text="用户名">
+      <ImageView fitHeight="34.0" fitWidth="22.0" layoutX="51.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/username.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="username" layoutX="106.0" layoutY="86.0" prefHeight="43.0" prefWidth="257.0" promptText="账号/用户名" style="-fx-background-color: #f0f1f2; -fx-border-color: gray; -fx-border-radius: 20;">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <ImageView fitHeight="22.0" fitWidth="30.0" layoutX="51.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/password.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="password" layoutX="106.0" layoutY="152.0" prefHeight="43.0" prefWidth="257.0" promptText="密码" style="-fx-background-color: #f0f1f2; -fx-border-color: gray; -fx-border-radius: 20;">
+         <font>
+            <Font size="16.0" />
+         </font></PasswordField>
+      <Button fx:id="loginBtn" alignment="CENTER" layoutX="48.0" layoutY="223.0" mnemonicParsing="false" onAction="#login" prefHeight="43.0" prefWidth="324.0" style="-fx-background-color: #87cee7; -fx-background-radius: 20;" text="立即登录" textAlignment="CENTER" textFill="#000000d6">
          <font>
             <Font size="18.0" />
          </font>
-      </Label>
-      <TextField fx:id="username" layoutX="144.0" layoutY="74.0" prefHeight="36.0" prefWidth="201.0" />
-      <Label layoutX="60.0" layoutY="151.0" text="密码">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="password" layoutX="144.0" layoutY="145.0" prefHeight="36.0" prefWidth="201.0" />
-      <Button fx:id="loginBtn" layoutX="88.0" layoutY="220.0" mnemonicParsing="false" onAction="#login" text="立即登录">
-         <font>
-            <Font size="16.0" />
-         </font>
       </Button>
-      <Button fx:id="registerBtn" layoutX="245.0" layoutY="220.0" mnemonicParsing="false" onAction="#register" text="注册账号">
+      <Button fx:id="registerBtn" layoutY="295.0" mnemonicParsing="false" onAction="#register" prefHeight="34.0" prefWidth="160.0" style="-fx-background-color: #f0f1f2;" text="没有账号？注册一个" textFill="#514f4f" />
+      <Label layoutX="66.0" layoutY="10.0" prefHeight="34.0" prefWidth="81.0" text="百度网盘">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
-      </Button>
+      </Label>
+      <ImageView fitHeight="22.0" fitWidth="39.0" layoutX="20.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/netdisk.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

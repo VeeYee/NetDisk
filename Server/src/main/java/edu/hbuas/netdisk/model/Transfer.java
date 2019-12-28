@@ -1,6 +1,5 @@
 package edu.hbuas.netdisk.model;
 
-
 import java.io.Serializable;
 
 public class Transfer implements Serializable {
@@ -9,17 +8,19 @@ public class Transfer implements Serializable {
   private String username;
   private String filename;
   private long fileLength;
+  private String filepath;
   private String time;
   private String operating;
 
   public Transfer() {
   }
 
-  public Transfer(long id, String username, String filename, long fileLength, String time, String operating) {
+  public Transfer(long id, String username, String filename, long fileLength, String filepath, String time, String operating) {
     this.id = id;
     this.username = username;
     this.filename = filename;
     this.fileLength = fileLength;
+    this.filepath = filepath;
     this.time = time;
     this.operating = operating;
   }
@@ -60,6 +61,15 @@ public class Transfer implements Serializable {
   }
 
 
+  public String getFilepath() {
+    return filepath;
+  }
+
+  public void setFilepath(String filepath) {
+    this.filepath = filepath;
+  }
+
+
   public String getTime() {
     return time;
   }
@@ -77,15 +87,4 @@ public class Transfer implements Serializable {
     this.operating = operating;
   }
 
-  @Override
-  public String toString() {
-    return "Transfer{" +
-            "id=" + id +
-            ", username='" + username + '\'' +
-            ", filename='" + filename + '\'' +
-            ", fileLength=" + fileLength +
-            ", time='" + time + '\'' +
-            ", operating='" + operating + '\'' +
-            '}';
-  }
 }

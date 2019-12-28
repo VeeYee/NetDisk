@@ -118,7 +118,7 @@ public class Server {
                         in.close();
                         //向传输记录表插入一条数据
                         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()); //获取当前时间
-                        Transfer record = new Transfer(0,message.getFrom().getUsername(),message.getFileName(),message.getFileLength(),time,"上传");
+                        Transfer record = new Transfer(0,message.getFrom().getUsername(),message.getFileName(),message.getFileLength(),"",time,"上传");
                         tfdao.addRecode(record);
                         break;
                     }
@@ -126,7 +126,7 @@ public class Server {
                     case DOWNLOAD: {
                         System.out.println("服务器收到一条下载文件的消息");
                         //字节流从磁盘读取文件写向内存，再通过通道流写向客户端
-                        File file = new File(userDir +"/" +message.getFileName());
+                        File file = new File(userDir +"/" +message.getFileName().split("   ")[1]);  //目录+文件名
                         FileInputStream fileIn = new FileInputStream(file);
                         byte[] bs = new byte[1024];
                         int length = -1;
@@ -138,7 +138,8 @@ public class Server {
                         out.close();  //关闭流！！
                         //向传输记录表中插入一条数据
                         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());  //获取当前时间
-                        Transfer record = new Transfer(0,message.getFrom().getUsername(),message.getFileName(),file.length(),time,"下载");
+                        Transfer record = new Transfer(0,message.getFrom().getUsername(),message.getFileName().split("   ")[1],
+                                file.length(),message.getFileName().split("   ")[0],time,"下载");
                         tfdao.addRecode(record);
                         break;
                     }
