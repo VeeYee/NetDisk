@@ -140,6 +140,7 @@ public class TransferControl{
 
     //打开本地文件
     private void openFile(String filePath){
+        System.out.println("点击了打开文件的方法");
         String path=filePath.replace("\\", "\\\\");
         File file=new File(path);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
