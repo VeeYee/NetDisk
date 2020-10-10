@@ -4,6 +4,7 @@
 1. 修改加载数据库配置文件的路径为绝对路径
 
   （ConnectionPool.java里面  读取配置文件的地方）
+  
     properties.load(new FileInputStream("D:\\Zidea\\NetDisk\\Server\\src\\main\\resources\\datasource.properties"));
 
 2. 手动在D盘创建空文件夹:  NetDiskFile
