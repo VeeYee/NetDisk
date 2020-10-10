@@ -3,16 +3,13 @@
 
 1. 修改加载数据库配置文件的路径为绝对路径
 
-  ConnectionPool.java里面  读取配置文件的地方
-  
-  
-  properties.load(new FileInputStream("D:\\Zidea\\NetDisk\\Server\\src\\main\\resources\\datasource.properties"));
-
+  （ConnectionPool.java里面  读取配置文件的地方）
+    properties.load(new FileInputStream("D:\\Zidea\\NetDisk\\Server\\src\\main\\resources\\datasource.properties"));
 
 2. 手动在D盘创建空文件夹:  NetDiskFile
 
 
-3. 服务端入口：Server.java     客户端入口：Login.java
+3. 服务端入口：Server.java        客户端入口：Login.java
 
 
 ## 已实现的功能
@@ -29,3 +26,4 @@
 11. 点击文件上传，从本地选择一个文件上传并显示在网盘中。
 12. 搜索功能，从我的网盘中的所有文件中搜索指定文件，支持回车搜索，或者点击按钮搜索。
 13. 另外界面支持滚动！！
+
