@@ -26,7 +26,5 @@
 10. 通过传输记录可以打开下载到本地的文件，也可以通过获取用户上传文件的路径，打开用户已上传的文件。若文件移动，打开失败，提示"文件不存在或已被移动"。
 11. 点击文件上传，从本地选择一个文件上传并显示在网盘中。
 12. 搜索功能，从我的网盘中的所有文件中搜索指定文件，支持回车搜索，或者点击按钮搜索。
-13. 另外界面支持滚动！！
+13. 界面支持上下滚动。
 
-## 项目实现效果
-![image](https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E5%9B%BE%E7%89%87&hs=2&pn=0&spn=0&di=175560&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&ie=utf-8&oe=utf-8&cl=2&lm=-1&cs=2534506313%2C1688529724&os=1097436471%2C408122739&simid=3354786982%2C133358663&adpicid=0&lpn=0&ln=30&fr=ala&fm=&sme=&cg=&bdtype=0&oriquery=%E5%9B%BE%E7%89%87&objurl=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fp7rtwg_z%26e3Bkwthj_z%26e3Bv54AzdH3Ftrw1AzdH3Fwn_89_0c_a8naaaaa8m98bm8d8nmm0cmbanmbm_3r2_z%26e3Bip4s&gsm=1&islist=&querylist=)
