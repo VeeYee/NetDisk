@@ -29,3 +29,4 @@
 13. 另外界面支持滚动！！
 
 ## 项目实现效果
+![image](https://github.com/VeeYee/NetDisk/blob/master/img-storage/%E5%8D%83%E7%8E%BA3.jpg)
